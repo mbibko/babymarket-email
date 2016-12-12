@@ -1,0 +1,179 @@
+@import 'utilities/index';
+@import 'base/index';
+@import 'layout/index';
+@import 'modules/index';
+
+.container {
+    font-family: arial, sans-serif;
+    width: 740px;
+    min-width: 500px;
+    margin: 0 auto;
+    color: $color-gray;
+    overflow: hidden;
+    & > tbody > tr > td {
+        padding: 20px 13px;
+        font-family: Helvetica, Arial, sans-serif;
+    }
+}
+
+.price {
+    font-size: 22px;
+}
+
+.logo {
+    td {
+        padding-bottom: 20px;
+    }
+}
+
+.header {
+    & > tbody > tr > td {
+        span {
+            color: #fff;
+        }
+        padding: 13px 25px;
+    }
+}
+
+.content {
+    margin: 0 auto;
+    line-height: 24px;
+    & > tbody > tr > td {
+        padding: 30px 25px 25px;
+        background-color: #fff;
+    }
+}
+
+.footer {
+    margin: 0 auto;
+    line-height: 18px;
+    border-top: 1px solid #e5e3e3;
+    border-bottom: 4px solid #05a6f2;
+    & > tbody > tr > td {
+        padding: 20px 25px 14px;
+        background-color: #fff;
+    }
+}
+
+.thanks {
+    margin-top: 27px;
+    margin-bottom: 5px;
+}
+
+.product-sm {
+    &-wrapper {
+        margin: 20px 0;
+        border-top: 1px solid #eeecec;
+    }
+    &-hor {
+        padding: 15px 29px 15px 15px;
+        border: 1px solid #eeecec;
+        border-top: 0;
+    }
+    &-hor__img {
+        width: 88px;
+        border: 3px solid #eeecec;
+        margin-right: 14px;
+    }
+    &-hor__img img {
+        max-width: 100%;
+    }
+    &-hor__button {
+        width: 150px;
+        height: 35px;
+        text-decoration: none;
+        display: block;
+        text-align: center;
+        padding-top: 10px;
+    }
+    &-hor__button a {
+        text-decoration: none;
+        color: #fff;
+    }
+    &-hor__title {
+        margin-top: -2px;
+        display: block;
+        line-height: 18px;
+        text-decoration: none;
+    }
+    &-hor__list {}
+    &-hor__col {
+        vertical-align: top;
+    }
+    &-hor__col--middle {
+        vertical-align: middle;
+    }
+    &-hor__col--middle {
+        text-align: right;
+    }
+}
+
+.socials {
+    td {
+        padding: 0 0 0 10px;
+    }
+}
+
+.b-kupon-kod {
+    width: 140px;
+    text-align: center;
+    margin: 0 auto 0;
+    & > tbody > tr > td {
+        padding-top: 20px;
+    }
+    &__title {
+        width: 100%;
+        color: #151734;
+        margin-bottom: 16px;
+        display: block;
+    }
+    &__button {
+        td {
+            width: 140px;
+            background-color: #f8f8f8;
+            border: 1px solid #eeecec;
+            color: #151734;
+            font-size: 23px;
+            font-weight: 400;
+            line-height: 18px;
+        }
+    }
+}
+
+.subtable2 {
+    width: 100%;
+    border: 1px solid #e0dddd;
+}
+
+.subtable2 > tbody > tr > td {
+    padding: 12px 0;
+    vertical-align: middle;
+    color: #007acf;
+    border-top: 1px solid #e0dddd;
+    border-bottom: 1px solid #e0dddd;
+    &.first {
+        padding-left: 15px;
+    }
+}
+
+.subtable2 a {
+    text-decoration: none;
+}
+
+.subtable2 .quantity {
+    color: #7f8090;
+    white-space: nowrap;
+}
+
+.subtable3 {
+}
+
+.subtable3 td {
+    padding: 6px 15px;
+}
+
+.subtable3 .first {
+    text-align: right;
+    color: $color-gray;
+    padding-left: 0;
+}

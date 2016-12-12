@@ -1,0 +1,52 @@
+{% extends "default.html" %} {% block content %}
+<table cellpadding="0" cellspacing="0" border="0" class="content" bgcolor="#fff">
+    <tbody>
+        <tr>
+            <td>
+                <p class="h1 text-center">Здравствуйте, Виктория!</p>
+                <p class="text-center ">Недавно вы совершили покупку в нашем магазине. Вы довольны товаром? Просим вас оставить отзыв о нем, это поможет другим покупателям определиться с выбором:</p>
+                <div class="product-sm-wrapper">
+                    {% for i in range(0,4) %}
+                    <table cellpadding="0" cellspacing="0" border="0">
+                        <tbody>
+                            <tr>
+                                <td class="product-sm-hor">
+                                    <table class="product-sm-hor__list" cellpadding="0" cellspacing="0" border="0">
+                                        <tbody>
+                                            <tr>
+                                                <td width="100" class="product-sm-hor__col">
+                                                    <div class="product-sm-hor__img">
+                                                        <img src="images/temp/product-sm/{{loop.index}}.jpg" alt="" />
+                                                    </div>
+                                                </td>
+                                                <td class="product-sm-hor__col">
+                                                    <p style="margin-bottom: 10px;">
+                                                        <a href="#" class="product-sm-hor__title">
+                                                        {% if loop.first %}
+                                                            Набор контейнеров для хранения грудного молока Philips Avent Via SCF612/10
+                                                        {% else %}
+                                                            Прогулочная коляска Vikalex Lazzara 
+                                                        {% endif %}
+                                                        </a>
+                                                    </p>
+                                                    <p style="margin-bottom: 0;" class="">Артикул: <span class="color-dark">75920</span></p>
+                                                    <p style="margin-bottom: 0;" class="">Производитель: <span class="color-dark">Италия</span></p>
+                                                </td>
+                                                <td width="160" class="product-sm-hor__col product-sm-hor__col--middle product-sm-hor__col--last">
+                                                    {{ macro.btn('btn-purple', width='160px', 'Добавить отзыв') }}
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    {% endfor %}
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}
+{% include "blocks/footer.html" %}

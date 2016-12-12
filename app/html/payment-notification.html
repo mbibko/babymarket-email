@@ -1,0 +1,103 @@
+{% extends "default.html" %}  {% block content %}
+<table cellpadding="0" cellspacing="0" border="0" class="content" bgcolor="#fff">
+    <tbody>
+        <tr>
+            <td>
+                <!--                 <p><b class="color-dark lead">Оплата заказа № 12589653</b></p>
+                <p>
+                    Уважаемый, Александр!
+                    <br /> Вам выставлен счет. После оплаты Ваш заказ будет отправлен. Спасибо, что выбрали наш магазин.
+                </p> -->
+                <table class="" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse;">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p><b class="color-dark" style="font-size: 16px;">Оплата заказа № 12589653</b></p>
+                                Уважаемый, Александр!
+                                <br /> Вам выставлен счет. После оплаты Ваш заказ будет отправлен. Спасибо, что выбрали наш магазин.
+                                <br />
+                                <br />
+                                <span class="lead" style="font-size: 18px;color: #151734;">Сумма к оплате: </span><span class="price" style="padding-left: 10px;font-size: 24px;color: #007acf;font-weight: 300;">60 000 руб.</span>
+                                <br />
+                                <br />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <table class="table-box" style="border-collapse: collapse;border-spacing: 0;border: 1px solid #e5e3e3;">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="3" style="padding: 15px 20px;background-color: #f5f4f4;border: 1px solid #e5e3e3;text-align: left;font-size: 20px;color: #000;font-weight: 300;">Варианты оплаты</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td style="padding: 15px 20px;background-color: #f9f9f9;border: none;border-bottom: 1px solid #e5e3e3;">
+                                                <table class="circle" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse;width: 83px;">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td style="padding: 0;background-color: #f9f9f9;border: none;border-bottom: none;vertical-align: middle;width: 83px;height: 83px;text-align: center;background: url(images/Layer-220.png) 0 0 no-repeat;"><img src="images/atm.png" height="36" width="30" alt="" style="display: inline-block;"></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                            <td style="padding: 15px 20px;background-color: #f9f9f9;border: none;border-bottom: 1px solid #e5e3e3;">
+                                                <div class="table-box__title" style="font-size: 20px;color: #000;padding-top: 8px;">Банкомат/online-банк</div>
+                                                <p style="margin: 0 0 8px 0;line-height: 18px;">Реквизиты карты:
+                                                    <br /> 5484 3800 1224 7482 &nbsp;&nbsp;&nbsp;&nbsp;K.Korobeynikov</p>
+                                                <div class="table-box__opt" style="color: #08b16c;">Комиссия от 0%</div>
+                                            </td>
+                                            <td style="padding: 15px 20px;background-color: #f9f9f9;border: none;border-bottom: 1px solid #e5e3e3;">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 15px 20px;background-color: #f9f9f9;border: none;border-bottom: 1px solid #e5e3e3;">
+                                                <table class="circle" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse;width: 83px;">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td style="padding: 0;background-color: #f9f9f9;border: none;border-bottom: none;vertical-align: middle;width: 83px;height: 83px;text-align: center;background: url(images/Layer-220.png) 0 0 no-repeat;"><img src="images/visa-sm.png" height="19" width="63" alt="" style="display: inline-block;"></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                            <td style="padding: 15px 20px;background-color: #f9f9f9;border: none;border-bottom: 1px solid #e5e3e3;">
+                                                <div class="table-box__title" style="font-size: 20px;color: #000;padding-top: 8px;">Карта Visa/MasterCard</div>
+                                                <p style="margin: 0 0 8px 0;line-height: 18px;">Оплата пластиковыми картами Visa. Прием платежей обеспечивает ОАО "ВТБ24"</p>
+                                                <div class="table-box__opt" style="color: #08b16c;">Комиссия от 0%</div>
+                                            </td>
+                                            <td style="padding: 15px 20px;background-color: #f9f9f9;border: none;border-bottom: 1px solid #e5e3e3;">
+                                                {{ macro.btn('btn-info btn-md', width='165px', 'Оплатить') }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 15px 20px;background-color: #f9f9f9;border: none;border-bottom: 1px solid #e5e3e3;">
+                                                <table class="circle" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse;width: 83px;">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td style="padding: 0;background-color: #f9f9f9;border: none;border-bottom: none;vertical-align: middle;width: 83px;height: 83px;text-align: center;background: url(images/Layer-220.png) 0 0 no-repeat;"><img src="images/expense.png" height="36" width="26" alt="" style="display: inline-block;"></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                            <td style="padding: 15px 20px;background-color: #f9f9f9;border: none;border-bottom: 1px solid #e5e3e3;">
+                                                <div class="table-box__title" style="font-size: 20px;color: #000;padding-top: 8px;">Квитанция в Банке</div>
+                                                <p style="margin: 0 0 8px 0;line-height: 18px;">Оплата заказа по квитанции в любом из банков Вашего города</p>
+                                                <div class="table-box__opt" style="color: #08b16c;">Комиссия от 1,2%</div>
+                                            </td>
+                                            <td style="padding: 15px 20px;background-color: #f9f9f9;border: none;border-bottom: 1px solid #e5e3e3;">
+                                                {{ macro.btn('btn-info btn-md', width='165px', 'Cкачать') }}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                {{ macro.space('30') }}
+                                <span><b>Заходите в наше <a href="#" style="text-decoration: underline;color: #50c0f0;">сообщество Вконтакте</a>, где мы всегда на связи!</b></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}

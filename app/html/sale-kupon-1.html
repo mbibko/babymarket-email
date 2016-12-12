@@ -1,0 +1,47 @@
+{% extends "default.html" %} {% block content %}
+<table class="content" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+        <tr>
+            <td class=" color-gray" align="center">
+                <p class="text-center"> В рамках акции «Нашли дешевле?» наш интернет-магазин предлагает Вам воспользоваться персональной скидкой на товар: </p>
+                {{ macro.space('20') }}
+                <p class="text-center">
+                    <a href="#"><img src="images/temp/product-img-lg.jpg" /></a>
+                </p>
+                {{ macro.space('20') }}
+                <p class="text-center">
+                    <a href="#" class="lead">Прогулочная коляска «Bumbleride Indie Twin»</a>
+                </p>
+                <p class="color-gray lead text-center" style="text-decoration: line-through;">62 100 р.</p>
+                {{ macro.space('20') }}
+                <p style="font-size: 26px;" class="price color-dark text-center">58 300 р. </p>
+                <table class="b-kupon-kod" border="0" cellpadding="0" cellspacing="0">
+                    <tbody>
+                        <tr>
+                            <td align="center" class="">
+                                <table class="b-kupon-kod__title" border="0" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                        <tr>
+                                            <td width="140" align="center" class="color-dark" align="center" valign="middle">Код купона:</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table class="btn b-kupon-kod__button" border="0" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                        <tr>
+                                            <td align="center" valign="middle"> F480HG </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                {{ macro.space('20') }}
+                {{ macro.btn('btn-info btn-lg', width='220px', 'Положить в корзину') }}
+                {{ macro.space('20') }}
+                <p class="text-center">* Это одноразовый купон и дает скидку только на товар указанный в данном письме.</p>
+            </td>
+        </tr>
+    </tbody>
+</table>{% endblock %}

@@ -1,0 +1,141 @@
+{% extends "default.html" %}
+{% block content %}
+<table cellpadding="0" cellspacing="0" border="0" class="content" bgcolor="#fff">
+    <tbody>
+        <tr>
+            <td class="border-bottom">
+                <table border="0" cellpadding="0" cellspacing="0">
+                    <tbody>
+                        <tr>
+                            <td class="arial " align="left">
+                                Уважаемый, <span class="color-dark">Алексей!</span>
+                                <br /> Ваш заказ от 17.12.2013 принят.
+                            </td>
+                            <td width="260" class="arial" align="right">
+                                <table border="0" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                        <tr>
+                                            <td class="arial" align="right">
+                                                <a href="#">Вступайте в сообщество</a>
+                                            </td>
+                                            <td align="right">
+                                                <a href="#"><img src="images/vk.png" height="36" width="37" alt=""></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p style="margin-bottom: 20px;" class="lead color-dark">№ заказа: 15896</p>
+                <table class="subtable2" cellpadding="0" cellspacing="0" border="0">
+                    <tbody>
+                        <tr>
+                            <td class="first" valign="top" width="420">
+                                <a href="#">Коляска Baby Сare Сity Drive</a>
+                                <table align="top" border="0" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                        <tr>
+                                            <td class="" align="left">Цвет: белый</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="" align="left">Размер: 120*60</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td width="80" class="quantity">1 шт.</td>
+                            <td width="140">20 000 руб.</td>
+                        </tr>
+                        <tr>
+                            <td class="first" width="420"><a href="#">Коляска Baby Сare Сity Drive</a></td>
+                            <td width="80" class="quantity">1 шт.</td>
+                            <td width="140">20 000 руб.</td>
+                        </tr>
+                        <tr>
+                            <td class="first" width="420"><a href="#">Коляска Baby Сare Сity Drive</a></td>
+                            <td width="80" class="quantity">1 шт.</td>
+                            <td width="140">20 000 руб.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                {{ macro.space('23') }}
+                <table cellpadding="0" cellspacing="0" border="0">
+                    <tbody>
+                        <tr>
+                            <td align="left" width="200" class="lead color-dark">Стоимость доставки:</td>
+                            <td align="left" class="price color-blue">405 руб.</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" height="5"></td>
+                        </tr>
+                        <tr>
+                            <td align="left" width="200" class="lead color-dark">Стоимость заказа:</td>
+                            <td align="left" class="price color-blue">65 000 руб.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                {{ macro.space('18') }}
+                <table class="subtable3" cellpadding="0" cellspacing="0" border="0">
+                    <tbody>
+                        <tr>
+                            <td class="first" width="140">Способ доставки</td>
+                            <td><span class="strong">Самовывоз (г. Минск, ул. Ольшевского 13)</span></td>
+                        </tr>
+                        <tr>
+                            <td class="first" width="140">Способ оплаты</td>
+                            <td><span class="strong">Наличные</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                {{ macro.space('18') }}
+                <p style="margin-bottom: 10px;" class="lead color-dark">Ваши данные</p>
+                <table class="subtable3" cellpadding="0" cellspacing="0" border="0">
+                    <tbody>
+                        <tr>
+                            <td class="first" width="140">ФИО</td>
+                            <td>123</td>
+                        </tr>
+                        <tr>
+                            <td class="first" width="140">E-mail</td>
+                            <td><a class="strong" target="_blank" value="+375(29)768-23-12" href="tel:%2B375%20%2829%29%20768-23-12">+375 (29) 768-23-12</a></td>
+                        </tr>
+                        <tr>
+                            <td class="first" width="140">Телефон</td>
+                            <td><a class="strong" target="_blank" href="mailto:67vasek@mail.ru">67vasek@mail.ru</a></td>
+                        </tr>
+                        <tr>
+                            <td class="first" width="140">Местоположение</td>
+                            <td>123</td>
+                        </tr>
+                        <tr>
+                            <td class="first" width="140">Адрес</td>
+                            <td>123</td>
+                        </tr>
+                    </tbody>
+                </table>
+                {{ macro.space('23') }}
+                <p class="" style="margin: 0 0 16px 0;line-height: 18px;">Заходите в наше <a href="#">сообщество Вконтакте</a>, где мы всегда на связи! Готовы помочь собрать кроватку, ответить на вопросы по поводу сроков доставки, эксплуатации коляски и многое другое, вступайте в сообщество.</p>
+                <div class="lead thanks color-dark" style="margin-top: 27px;margin-bottom: 5px;">Спасибо за покупку!</div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}
+{% block footer %}
+<table cellpadding="0" cellspacing="0" border="0" class="footer" bgcolor="#fff">
+    <tbody>
+        <tr>
+            <td>
+                {% include "blocks/footer-text.html" %}
+                <p>Информация, приведенная в данном письме, справочная и не является публичной офертой.</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}

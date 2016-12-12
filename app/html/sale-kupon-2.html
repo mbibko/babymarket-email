@@ -1,0 +1,35 @@
+{% extends "default.html" %} {% block content %}
+<table class="content" cellpadding="0" cellspacing="0" border="0">
+    <tbody>
+        <tr>
+            <td align="center">
+                <p class="h1 text-center color-dark">Покупайте выгодно!</p>
+                <p class="color-gray arial">Совершайте все новые покупки в нашем магазине со скидкой <span class="color-dark lead">3%</p>
+                <table class="b-kupon-kod" border="0" cellpadding="0" cellspacing="0">
+                    <tbody>
+                        <tr>
+                            <td align="center">
+                                <table class="b-kupon-kod__title" border="0" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                        <tr>
+                                            <td width="140" align="center" class="color-dark" align="center" valign="middle">Код купона:</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table class="btn b-kupon-kod__button" border="0" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                        <tr>
+                                            <td align="center" valign="middle"> F480HG </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                {{ macro.space('20') }}
+                {{ macro.btn('btn-info btn-lg', width='220px', 'Перейти в магазин') }}
+            </td>
+        </tr>
+    </tbody>
+</table>{% endblock %}

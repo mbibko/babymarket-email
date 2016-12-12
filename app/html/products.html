@@ -1,0 +1,61 @@
+{% extends "default.html" %}  {% block content %}
+<table cellpadding="0" cellspacing="0" border="0" class="content" bgcolor="#fff">
+    <tbody>
+
+        <tr>
+            <td style="padding-bottom: 0;">
+                <p class="color-dark lead">Здравствуйте!</p>
+                <p>Возможно Вас заинтересуют наши товары. Мы продаем их сейчас со скидкой!</p>
+                <p style="font-size: 30px;" class="color-blue">Скидка 10%</p>
+                <p class="color-dark">Бесплатная доставка по Москве! Так же мы доставляем заказы по всей России.</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" class="content" bgcolor="#fff">
+    <tbody>
+        <tr>
+            <td style="padding: 0 14px">
+                <table class="products" cellpadding="0" cellspacing="0" border="0" bgcolor="#fff">
+                    <tbody>
+                        {% for a in range(0,3) %}
+                        <tr>
+                            {% for b in range(0,3) %}
+                            <td style="padding: 10px 10px 15px;">
+                                <table class="product" style="border: 1px solid #EEECEC; padding-top: 7px;">
+                                    <tbody>
+                                        <tr>
+                                            <td align="center" class="product-top">
+                                                <a href="#" class="product-img"><img src="images/product.png" height="202" width="201" alt=""></a>
+                                                <table class="product-title" cellpadding="0" cellspacing="0" border="0">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td align="center" class="color-blue" style="height: 36px;">
+                                                                Комплект в кроватку Bombus Зайка 7 предметов
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                {{ macro.space('10') }}
+                                                <p class="product-price text-center color-dark" style="font-size: 22px;">14 000 р.</p>
+                                                {{ macro.space('2') }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center product-bottom" style="border-top: 1px solid #EEECEC;padding: 15px 30px;">
+                                                {{ macro.btn('btn-info', 'Перейти к товару') }}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}
