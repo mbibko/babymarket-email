@@ -1,8 +1,5 @@
 *.sublime*
 node_modules/
-bower_components/
-psd/
-psd-screens/
+sources/
 backup/
-app/maps/
 Thumbs.db
