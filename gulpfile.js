@@ -1,222 +1,189 @@
+const fs = require('fs');
+const del = require('del');
 var gulp = require('gulp');
-var $ = require('gulp-load-plugins')();
 var browserSync = require('browser-sync').create();
-var reload = browserSync.reload;
 var nunjucksRender = require('gulp-nunjucks-render');
-var spritesmith = require('gulp.spritesmith');
 var inlineCss = require('gulp-inline-css');
-var path = require('path');
-var translit = require('translitit-cyrillic-russian-to-latin');
 var inlineSource = require('gulp-inline-source');
-var ftp = require( 'vinyl-ftp' );
-// var cssUrlVersion = require('gulp-css-urlversion');
+var vinylFtp = require('vinyl-ftp');
+var plumber = require('gulp-plumber');
+var replace = require('gulp-replace');
+var sourcemaps = require('gulp-sourcemaps');
+var sass = require('gulp-sass');
+var sendmail = require('gulp-mailgun');
+var jsbeautifier = require('gulp-jsbeautifier');
+var htmllint = require('gulp-htmllint');
 
-var spriteFolder = 'sprite-images';
+/** FTP Configuration **/
+var ftp = {
+    user: process.env.FTP_USER,
+    password: process.env.FTP_PWD,
+    host: '188.225.80.86',
+    port: 21,
+    localFilesGlob: ['./build/**/*.*'],
+    baseFolder: './build/',
+    remoteFolder: '/www/html.xx28.ru/vsekroham-mail'
+}
 
-/** Configuration **/
-var user = 'maks';
-var password = '3H8i5H5c';  
-var host = '188.225.80.86';  
-var port = 21;  
-var localFilesGlob = ['./app/images/**/*', './app/*.html'];
-var baseFolder = './app/';
-var remoteFolder = '/www/html.xx28.ru/vsekroham/e-mail';
-
-gulp.task('html-watcher', ['html'], function() {
-    browserSync.reload();
+gulp.task('watch', function() {
+    gulp.watch(['app/*.*', 'app/images/**/*.{png,jpg,jpeg,gif,svg}', '!app/main.css'], gulp.series(copyFiles, 'reload'));
+    gulp.watch('app/scss/**/*.scss', gulp.series('sass', 'html', 'reload'));
+    gulp.watch('app/html/**/*.html', gulp.series('html', copyFiles, 'reload'));
 });
 
-function getDataForFile(file) {
-    return require('./app/html/data.json');
+gulp.task('reload', function(cb) {
+    browserSync.reload()
+    cb();
+});
+
+function clean() {
+    return del(['./build']);
 }
 
 gulp.task('html', function() {
     return gulp.src('app/html/*.html')
-        .pipe($.plumber({
-            errorHandler: $.notify.onError("<%= error.message %>")
+        .pipe(plumber({
+            errorHandler: function(err) {
+                process.stderr.write("\007");
+                console.log(err);
+            }
         }))
-        .pipe($.data(getDataForFile))
         .pipe(nunjucksRender({
-            path: ['app/html/layouts'] // String or Array 
+            path: ['app/html/layouts']
         }))
         .pipe(inlineSource())
         .pipe(inlineCss({
             preserveMediaQueries: true
         }))
-        .pipe($.replace('src="images/', 'src="http://html.xx28.ru/vsekroham/e-mail/images/'))
-        .pipe($.replace('url(images/', 'url(http://html.xx28.ru/vsekroham/e-mail/images/'))
-        // .pipe($.replace('<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>', ''))
-        // .pipe($.replace('<script src="dinamic-links.js"></script>', ''))
-        // .pipe($.htmlmin({ collapseWhitespace: true }))
-        .pipe(gulp.dest('app'));
-});
-
-gulp.task('watch', function() {
-    gulp.watch([
-        'app/css/**/*.css',
-        '!app/css/main.css',
-        'app/js/**/*.js',
-        'app/!images/' + spriteFolder + '/**/*.*',
-        'app/images/**/*.{png,jpg,jpeg,gif,svg}',
-        'app/fonts/**/*.*'
-    ], {
-        interval: 800
-    }).on('change', reload);
-
-    gulp.watch('app/scss/**/*.scss', {
-        interval: 300
-    }, ['sass']);
-
-    gulp.watch('app/scss/media.scss', {
-        interval: 300
-    }, ['media']);
-
-    gulp.watch(['app/images/' + spriteFolder + '/*.png', 'app/images/' + spriteFolder + '/**/*.png'], {
-        interval: 300
-    }, ['sprites']);
-
-    gulp.watch(['app/html/*.html', 'app/html/**/*.html'], ['html-watcher']);
-    gulp.watch('app/main.css', ['html-watcher']);
-    gulp.watch('app/css/media.css', ['html-watcher']);
+        .pipe(gulp.dest('build'))
 });
 
 gulp.task('sass', function() {
-    return gulp.src('app/scss/main.scss')
-        .pipe($.sourcemaps.init())
-        .pipe($.plumber({
-            errorHandler: $.notify.onError("<%= error.message %>")
+    return gulp.src('app/scss/*.scss')
+        .pipe(plumber({
+            errorHandler: function(err) {
+                process.stderr.write("\007");
+                console.log(err);
+            }
         }))
-        .pipe($.sass({
-            outputStyle: 'compressed', // libsass doesn't support expanded yet
-            // includePaths: ['bower_components/bootstrap-sass/assets/stylesheets/'],
+        .pipe(sass({
+            outputStyle: 'compressed', // nested, compressed
         }))
-        // .pipe(cssUrlVersion({baseDir: 'app/css'}))
-        .pipe($.postcss([
-            require('autoprefixer-core')({
-                browsers: ['last 2 versions', 'ie >= 9', 'and_chr >= 2.3']
-            })
-        ]))
-        // .pipe($.csso())
-        .pipe($.sourcemaps.write('./maps', {
-            includeContent: false,
-            sourceRoot: 'app/scss'
-        }))
-        .pipe(gulp.dest('app'))
-        .pipe(browserSync.stream({ match: '**/*.css' }));
+        .pipe(gulp.dest('app'));
 });
 
-gulp.task('media', function() {
-    return gulp.src('app/scss/media.scss')
-        // .pipe($.sourcemaps.init())
-        .pipe($.plumber({
-            errorHandler: $.notify.onError("<%= error.message %>")
-        }))
-        .pipe($.sass({
-            outputStyle: 'compressed', // libsass doesn't support expanded yet
-        }))
-        .pipe(gulp.dest('app/css'))
-        .pipe(browserSync.stream({ match: '**/*.css' }));
-});
-
-
-gulp.task('sprites', function() {
-    // Generate our spritesheet
-    var spriteData = gulp.src('app/images/' + spriteFolder + '/**/*.png')
-        .pipe(spritesmith({
-            imgName: 'sprite.png',
-            cssName: 'sprite.scss',
-            imgPath: '../images/sprite.png',
-            cssVarMap: function(sprite) {
-                sprite.name = 'sprite-' + sprite.name;
-            },
-            algorithm: "top-down",
-            algorithmOpts: { sort: false },
-            padding: 10
-        }));
-
-    spriteData.img
-        // .pipe(imagemin())
-        .pipe(gulp.dest('app/images'));
-
-    spriteData.css
-        // .pipe(csso())
-        .pipe(gulp.dest('app/scss/utilities'));
-});
-
-gulp.task('fonts', function() {
-    return gulp.src('bower_components/bootstrap-sass/assets/fonts/**/*')
-        .pipe(gulp.dest('app/fonts'));
-});
-
-gulp.task('serve', ['sass', 'fonts'], function() {
+gulp.task('serve', function() {
     browserSync.init({
         notify: false,
         open: false,
         server: {
-            baseDir: ['app']
+            baseDir: ['build']
         }
     });
-    gulp.start(['watch']);
 });
 
-var options = {
-    user: 'api:key-c9370f6109ccb5fa6223fd4f673e36c4',
-    url: 'https://api.mailgun.net/v3/sandboxa7c0607c0d9d40abb5c50ca20018e3b1.mailgun.org/messages',
-    form: {
-        from: 'Maxim <postmaster@sandboxa7c0607c0d9d40abb5c50ca20018e3b1.mailgun.org>',
-        to: 'Maxim <mbibko@gmail.com>',
-        subject: 'You have an new email',
-        text: 'text version'
-    }
-};
+function replaceString(folder, string, replacer) {
+    fs.readdir(folder, (err, files) => {
+        var files = files.filter(el => /\.html$/.test(el))
+        files.forEach(file => {
+            fs.readFile(folder + file, 'utf8', (err, data) => {
+                if (err) {
+                    return console.log(err);
+                }
+                var re = new RegExp(string, "g");
+                var result = data.replace(re, replacer);
 
-sendmail = require('gulp-mailgun');
-gulp.task('sendmail', function () {
-  gulp.src(['app/*.html']) // Modify this to select the HTML file(s)
-  .pipe(sendmail({
-    key: 'key-c9370f6109ccb5fa6223fd4f673e36c4', // Enter your Mailgun API key here
-    sender: 'postmaster@sandboxa7c0607c0d9d40abb5c50ca20018e3b1.mailgun.org',
-    recipient: 'mbibko@gmail.com',
-    // recipient: 'alex@silentcode.org',
-    // recipient: 'frolovean@gmail.com',
-    subject: 'vsekroham mail'
-  }));
-});
-
-gulp.task('inlinecss', function() {
-    console.log('inlinecss start');
-    return gulp.src('app/*.html')
-        .pipe(inlineCss({
-            preserveMediaQueries: true
-        }))
-        .pipe(gulp.dest('app/'));
-});
-
-// helper function to build an FTP connection based on our configuration
-function getFtpConnection() {  
-    return ftp.create({
-        host: host,
-        port: port,
-        user: user,
-        password: password,
-        parallel: 5,
-        log: $.util.log
+                fs.writeFile(folder + file, result, 'utf8', function(err) {
+                    if (err) return console.log(err);
+                });
+            });
+            // console.log(file);
+        });
     });
 }
+
+gulp.task('html-pretty', function() {
+    return gulp.src('build/*.html')
+        .pipe(jsbeautifier({
+            indent_inner_html: true,
+            preserve_newlines: false,
+            max_preserve_newlines: 0,
+            extra_liners: [],
+            unformatted: [],
+            brace_style: 'expand',
+            indent_char: ' ',
+            indent_size: 4
+        }))
+        .pipe(gulp.dest('build'));
+});
+
+gulp.task('htmllint', function() {
+    return gulp.src('./build/*.html')
+            .pipe(htmllint({
+                rules: {
+                    "line-end-style": false,
+                    "attr-bans": [],
+                    "class-style": 'none',
+                    "img-req-alt": false,
+                    "tag-bans": []
+                }
+            }, htmllintReporter));
+});
+
+function copyFiles(cb) {
+    gulp.src(['app/*.*', 'app/images/**/*.{png,jpg,jpeg,gif,svg}', '!app/main.css'], {base: 'app'})
+        .pipe(gulp.dest('build'));
+    cb();
+}
+
+function replaceFiles(cb) {
+    replaceString('./build/', 'images/', 'http://html.xx28.ru/vsekroham-mail/images/');
+    cb();
+}
+
+gulp.task('production', gulp.series(clean, 'sass', 'html', 'html-pretty', 'htmllint', copyFiles, replaceFiles));
+
+function htmllintReporter(filepath, issues) {
+    if (issues.length > 0) {
+        issues.forEach(function (issue) {
+            console.log('[gulp-htmllint] '+ filepath + ' ['+ issue.line + ', ' + issue.column +']' + ' (' + issue.code + ') ' + issue.msg);
+        });
+        process.exitCode = 1;
+    }
+}
+
+gulp.task('sendmail', function() {
+    gulp.src(['build/*.html']) // Modify this to select the HTML file(s)
+        .pipe(sendmail({
+            key: 'key-c9370f6109ccb5fa6223fd4f673e36c4', // Enter your Mailgun API key here
+            sender: 'postmaster@sandboxa7c0607c0d9d40abb5c50ca20018e3b1.mailgun.org',
+            recipient: 'mbibko@gmail.com',
+            // recipient: 'alex@silentcode.org',
+            // recipient: 'frolovean@gmail.com',
+            subject: 'vsekroham mail'
+        }));
+});
+
 /**
  * Deploy task.
  * Copies the new files to the server
  *
  * Usage: `FTP_USER=someuser FTP_PWD=somepwd gulp ftp-deploy`
  */
-gulp.task('ftp-deploy', function() {
+gulp.task('ftp-deploy', gulp.series('production'), function() {
 
-    var conn = getFtpConnection();
+    var conn = vinylFtp.create({
+        host: ftp.host,
+        port: ftp.port,
+        user: ftp.user,
+        password: ftp.password,
+        parallel: 5,
+        log: null
+    });
 
-    return gulp.src(localFilesGlob, { base: baseFolder, buffer: false })
-        .pipe( conn.newer( remoteFolder ) ) // only upload newer files 
-        .pipe( conn.dest( remoteFolder ) )
-    ;
+    return gulp.src(ftp.localFilesGlob, { base: ftp.baseFolder, buffer: false })
+        .pipe(conn.newer(ftp.remoteFolder)) // only upload newer files 
+        .pipe(conn.dest(ftp.remoteFolder))
 });
 
-gulp.task('default', ['serve']);
+gulp.task('default', gulp.parallel('watch', 'serve'));
