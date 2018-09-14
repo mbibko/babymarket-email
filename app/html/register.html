@@ -1,0 +1,18 @@
+{% extends "default.html" %}  {% block content %}
+<table cellpadding="0" cellspacing="0" border="0" class="content">
+    <tbody>
+        <tr>
+            <td>
+                <h1 class="h1">Регистрация успешно завершена!</h1>
+                <p>Подтвердите пожалуйста регистрацию на сайте bastion.by <br> Логин: ivan.corp@mai.ru</p>
+                {{ macro.btn({
+                    align: 'left',
+                    class: 'btn-info',
+                    width: '251px',
+                    text: 'Подтвердить регистрацию'
+                }) }}
+            </td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}
