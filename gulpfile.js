@@ -25,7 +25,7 @@ var ftp = {
     remoteFolder: '/www/html.xx28.ru/vsekroham-mail'
 }
 
-gulp.task('watch', function() {
+gulp.task('watch', () => {
     gulp.watch(['app/*.*', 'app/images/**/*.{png,jpg,jpeg,gif,svg}', '!app/main.css'], gulp.series(copyFiles, 'reload'));
     gulp.watch('app/scss/**/*.scss', gulp.series('sass', 'html', 'reload'));
     gulp.watch('app/html/**/*.html', gulp.series('html', copyFiles, 'reload'));
@@ -40,7 +40,7 @@ function clean() {
     return del(['./build']);
 }
 
-gulp.task('html', function() {
+gulp.task('html', () => {
     return gulp.src('app/html/*.html')
         .pipe(plumber({
             errorHandler: function(err) {
@@ -58,7 +58,7 @@ gulp.task('html', function() {
         .pipe(gulp.dest('build'))
 });
 
-gulp.task('sass', function() {
+gulp.task('sass', () => {
     return gulp.src('app/scss/*.scss')
         .pipe(plumber({
             errorHandler: function(err) {
@@ -72,7 +72,7 @@ gulp.task('sass', function() {
         .pipe(gulp.dest('app'));
 });
 
-gulp.task('serve', function() {
+gulp.task('serve', () => {
     browserSync.init({
         notify: false,
         open: false,
@@ -102,7 +102,7 @@ function replaceString(folder, string, replacer) {
     });
 }
 
-gulp.task('html-pretty', function() {
+gulp.task('html-pretty', () => {
     return gulp.src('build/*.html')
         .pipe(jsbeautifier({
             indent_inner_html: true,
@@ -117,7 +117,7 @@ gulp.task('html-pretty', function() {
         .pipe(gulp.dest('build'));
 });
 
-gulp.task('htmllint', function() {
+gulp.task('htmllint', () => {
     return gulp.src('./build/*.html')
             .pipe(htmllint({
                 rules: {
@@ -131,9 +131,8 @@ gulp.task('htmllint', function() {
 });
 
 function copyFiles(cb) {
-    gulp.src(['app/*.*', 'app/images/**/*.{png,jpg,jpeg,gif,svg}', '!app/main.css'], {base: 'app'})
+    return gulp.src(['app/*.*', 'app/images/**/*.{png,jpg,jpeg,gif,svg}', '!app/main.css'], {base: 'app'})
         .pipe(gulp.dest('build'));
-    cb();
 }
 
 function replaceFiles(cb) {
@@ -152,7 +151,7 @@ function htmllintReporter(filepath, issues) {
     }
 }
 
-gulp.task('sendmail', function() {
+gulp.task('sendmail', () => {
     gulp.src(['build/*.html']) // Modify this to select the HTML file(s)
         .pipe(sendmail({
             key: 'key-c9370f6109ccb5fa6223fd4f673e36c4', // Enter your Mailgun API key here
@@ -170,20 +169,22 @@ gulp.task('sendmail', function() {
  *
  * Usage: `FTP_USER=someuser FTP_PWD=somepwd gulp ftp-deploy`
  */
-gulp.task('ftp-deploy', gulp.series('production'), function() {
 
-    var conn = vinylFtp.create({
-        host: ftp.host,
-        port: ftp.port,
-        user: ftp.user,
-        password: ftp.password,
-        parallel: 5,
-        log: null
-    });
+gulp.task('ftp-deploy', () => {
+     var conn = vinylFtp.create({
+         host: ftp.host,
+         port: ftp.port,
+         user: ftp.user,
+         password: ftp.password,
+         parallel: 5,
+         log: null
+     });
 
-    return gulp.src(ftp.localFilesGlob, { base: ftp.baseFolder, buffer: false })
-        .pipe(conn.newer(ftp.remoteFolder)) // only upload newer files 
-        .pipe(conn.dest(ftp.remoteFolder))
+     return gulp.src(ftp.localFilesGlob, { base: ftp.baseFolder, buffer: false })
+         .pipe(conn.newer(ftp.remoteFolder)) // only upload newer files 
+         .pipe(conn.dest(ftp.remoteFolder))
 });
+
+gulp.task('ftp-deploy:production', gulp.series('production', 'ftp-deploy'));
 
 gulp.task('default', gulp.parallel('watch', 'serve'));
