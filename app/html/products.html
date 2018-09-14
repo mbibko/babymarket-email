@@ -43,7 +43,10 @@
                                         </tr>
                                         <tr>
                                             <td align="center product-bottom" style="border-top: 1px solid #EEECEC;padding: 15px 30px;">
-                                                {{ macro.btn('btn-info', 'Перейти к товару') }}
+                                                {{ macro.btn({
+                                                        class: 'btn-info',
+                                                        text: 'Перейти к товару'
+                                                }) }}
                                             </td>
                                         </tr>
                                     </tbody>

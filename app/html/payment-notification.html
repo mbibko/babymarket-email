@@ -66,7 +66,11 @@
                                                 <div class="table-box__opt" style="color: #08b16c;">Комиссия от 0%</div>
                                             </td>
                                             <td style="padding: 15px 20px;background-color: #f9f9f9;border: none;border-bottom: 1px solid #e5e3e3;">
-                                                {{ macro.btn('btn-info btn-md', width='165px', 'Оплатить') }}
+                                                {{ macro.btn({
+                                                    class: 'btn-info btn-md',
+                                                    width: '165px',
+                                                    text: 'Оплатить'
+                                                }) }}
                                             </td>
                                         </tr>
                                         <tr>
@@ -85,7 +89,11 @@
                                                 <div class="table-box__opt" style="color: #08b16c;">Комиссия от 1,2%</div>
                                             </td>
                                             <td style="padding: 15px 20px;background-color: #f9f9f9;border: none;border-bottom: 1px solid #e5e3e3;">
-                                                {{ macro.btn('btn-info btn-md', width='165px', 'Cкачать') }}
+                                                {{ macro.btn({
+                                                    class: 'btn-info btn-md',
+                                                    width: '165px',
+                                                    text: 'Cкачать'
+                                                }) }}
                                             </td>
                                         </tr>
                                     </tbody>

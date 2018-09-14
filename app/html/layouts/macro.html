@@ -8,12 +8,12 @@
 </table>
 {% endmacro %}
 
-{% macro btn(style, width='100%', text) %}
-<table align="center" style="width: {{width}}" class="btn {{style}}" border="0" cellpadding="0" cellspacing="0">
+{% macro btn(settings) %}
+<table align="{{settings.align or 'center'}}" style="width: {{settings.width or '100%'}}" class="btn {{settings.class}}" border="0" cellpadding="0" cellspacing="0">
     <tbody>
         <tr>
             <td align="center" valign="middle">
-                <a title="{{text}}" href="#">{{text}}</a>
+                <a title="{{settings.text}}" href="#">{{settings.text}}</a>
             </td>
         </tr>
     </tbody>

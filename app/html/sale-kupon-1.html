@@ -38,7 +38,11 @@
                     </tbody>
                 </table>
                 {{ macro.space('20') }}
-                {{ macro.btn('btn-info btn-lg', width='220px', 'Положить в корзину') }}
+                {{ macro.btn({
+                    class: 'btn-info btn-lg',
+                    width: '220px',
+                    text: 'Положить в корзину'
+                }) }}
                 {{ macro.space('20') }}
                 <p class="text-center">* Это одноразовый купон и дает скидку только на товар указанный в данном письме.</p>
             </td>

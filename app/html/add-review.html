@@ -33,7 +33,11 @@
                                                     <p style="margin-bottom: 0;" class="">Производитель: <span class="color-dark">Италия</span></p>
                                                 </td>
                                                 <td width="160" class="product-sm-hor__col product-sm-hor__col--middle product-sm-hor__col--last">
-                                                    {{ macro.btn('btn-purple', width='160px', 'Добавить отзыв') }}
+                                                    {{ macro.btn({
+                                                        class: 'btn-purple',
+                                                        width: '160px',
+                                                        text: 'Добавить отзыв'
+                                                    }) }}
                                                 </td>
                                             </tr>
                                         </tbody>

@@ -28,7 +28,11 @@
                     </tbody>
                 </table>
                 {{ macro.space('20') }}
-                {{ macro.btn('btn-info btn-lg', width='220px', 'Перейти в магазин') }}
+                {{ macro.btn({
+                    class: 'btn-info btn-lg',
+                    width: '220px',
+                    text: 'Перейти в магазин'
+                }) }}
             </td>
         </tr>
     </tbody>
