@@ -26,9 +26,9 @@ var ftp = {
 }
 
 gulp.task('watch', function() {
-    gulp.watch('app/images/**/*.{png,jpg,jpeg,gif,svg}', gulp.series('html', copyReplace, 'reload'));
+    gulp.watch(['app/*.*', 'app/images/**/*.{png,jpg,jpeg,gif,svg}', '!app/main.css'], gulp.series(copyFiles, 'reload'));
     gulp.watch('app/scss/**/*.scss', gulp.series('sass', 'html', 'reload'));
-    gulp.watch('app/html/**/*.html', gulp.series('html', 'reload'));
+    gulp.watch('app/html/**/*.html', gulp.series('html', copyFiles, 'reload'));
 });
 
 gulp.task('reload', function(cb) {
@@ -97,7 +97,7 @@ function replaceString(folder, string, replacer) {
                     if (err) return console.log(err);
                 });
             });
-            console.log(file);
+            // console.log(file);
         });
     });
 }
@@ -130,15 +130,18 @@ gulp.task('htmllint', function() {
             }, htmllintReporter));
 });
 
-function copyReplace(cb) {
-    replaceString('./build/', 'images/', 'http://html.xx28.ru/vsekroham-mail/images/');
-
+function copyFiles(cb) {
     gulp.src(['app/*.*', 'app/images/**/*.{png,jpg,jpeg,gif,svg}', '!app/main.css'], {base: 'app'})
         .pipe(gulp.dest('build'));
     cb();
 }
 
-gulp.task('production', gulp.series(clean, 'sass', 'html', 'html-pretty', 'htmllint', copyReplace));
+function replaceFiles(cb) {
+    replaceString('./build/', 'images/', 'http://html.xx28.ru/vsekroham-mail/images/');
+    cb();
+}
+
+gulp.task('production', gulp.series(clean, 'sass', 'html', 'html-pretty', 'htmllint', copyFiles, replaceFiles));
 
 function htmllintReporter(filepath, issues) {
     if (issues.length > 0) {
