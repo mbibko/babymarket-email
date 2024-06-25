@@ -1,6 +1,7 @@
 # BabyMarket email templates
 
 This templates was build with [gulp](https://gulpjs.com/) and [nunjucks](https://mozilla.github.io/nunjucks/) templating engine to create new emails faster
+
 List of entry pages are located on this link [babymarket-email](https://mbibko.github.io/babymarket-email/)
 
 ## Getting Started
