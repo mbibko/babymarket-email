@@ -4,6 +4,13 @@ const browserSync = require("browser-sync").create();
 const nunjucksRender = require("gulp-nunjucks-render");
 const gulpInlineCss = require("gulp-inline-css");
 const sendmail = require("gulp-mailgun");
+const through2 = require("through2");
+
+const AttributeRemover = require("html-attributes-remover").default;
+const attributeRemover = new AttributeRemover({
+  htmlTags: ["div", "table", "td", "span", "h1", "p", "img", "a", "b", "i"],
+  attributes: ["class"],
+});
 
 function reload(cb) {
   browserSync.reload();
@@ -39,6 +46,15 @@ function inlinecss() {
   return gulp
     .src("build/*.html")
     .pipe(gulpInlineCss())
+    .pipe(
+      through2.obj(function (file, _, cb) {
+        if (file.isBuffer()) {
+          const code = attributeRemover.remove(file.contents.toString());
+          file.contents = Buffer.from(code);
+        }
+        cb(null, file);
+      })
+    )
     .pipe(gulp.dest("build"));
 }
 

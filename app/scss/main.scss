@@ -142,40 +142,38 @@
 .subtable2 {
     width: 100%;
     border: 1px solid #e0dddd;
-}
-
-.subtable2 > tbody > tr > td {
-    padding: 12px 0;
-    vertical-align: middle;
-    color: #007acf;
-    border-top: 1px solid #e0dddd;
-    border-bottom: 1px solid #e0dddd;
-    &.first {
-        padding-left: 15px;
+    a {
+        text-decoration: none;
+    }
+    .quantity {
+        color: #7f8090;
+        white-space: nowrap;
+    }
+    & > tbody > tr > td {
+        padding: 12px 0;
+        vertical-align: middle;
+        color: #007acf;
+        border-top: 1px solid #e0dddd;
+        border-bottom: 1px solid #e0dddd;
+        &.first {
+            padding-left: 15px;
+        }
     }
 }
 
-.subtable2 a {
-    text-decoration: none;
-}
-
-.subtable2 .quantity {
-    color: #7f8090;
-    white-space: nowrap;
-}
 
 .subtable3 {
+    td {
+        padding: 6px 15px;
+    }
+    .first {
+        text-align: right;
+        color: $color-gray;
+        padding-left: 0;
+    }
 }
 
-.subtable3 td {
-    padding: 6px 15px;
-}
 
-.subtable3 .first {
-    text-align: right;
-    color: $color-gray;
-    padding-left: 0;
-}
 .upages {
     position: absolute;
     left: 0;

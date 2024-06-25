@@ -1,0 +1,64 @@
+{% extends "default.html" %}  {% block content %}
+<table cellpadding="0" cellspacing="0" border="0" class="content">
+    <tbody>
+
+        <tr>
+            <td style="padding-bottom: 0;">
+                <p class="color-dark lead">Hello!</p>
+                <p>You may be interested in our products. We are selling them now at a discount!</p>
+                <p style="font-size: 30px;" class="color-blue">Discount 10%</p>
+                <p class="color-dark">Free delivery! Also we deliver orders all over USA.</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" class="content">
+    <tbody>
+        <tr>
+            <td style="padding: 0 14px">
+                <table class="products" cellpadding="0" cellspacing="0" border="0">
+                    <tbody>
+                        {% for a in range(0,3) %}
+                        <tr>
+                            {% for b in range(0,3) %}
+                            <td style="padding: 10px 10px 15px;">
+                                <table class="product" style="border: 1px solid #EEECEC; padding-top: 7px;">
+                                    <tbody>
+                                        <tr>
+                                            <td align="center" class="product-top">
+                                                <a href="#" class="product-img"><img src="images/product.png" height="202" width="201" alt=""></a>
+                                                <table class="product-title" cellpadding="0" cellspacing="0" border="0">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td align="center" class="color-blue" style="height: 36px;">
+                                                                Set in the crib Bombus Bunny 7 items
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                {{ macro.space('10') }}
+                                                <p class="product-price text-center color-dark" style="font-size: 22px;">$140</p>
+                                                {{ macro.space('2') }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center product-bottom" style="border-top: 1px solid #EEECEC;padding: 15px 30px;">
+                                                {{ macro.btn({
+                                                        class: 'btn-info',
+                                                        text: 'Add to cart'
+                                                }) }}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}

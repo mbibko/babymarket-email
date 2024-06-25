@@ -10,9 +10,9 @@
     "gulp-notify": "^4.0.0",
     "gulp-nunjucks-render": "^2.2.3",
     "gulp-sass": "^5.1.0",
-    "gulp-sourcemaps": "^3.0.0"
-  },
-  "dependencies": {
-    "sass": "^1.77.6"
+    "gulp-sourcemaps": "^3.0.0",
+    "html-attributes-remover": "^1.0.4",
+    "sass": "^1.77.6",
+    "through2": "^4.0.2"
   }
 }
