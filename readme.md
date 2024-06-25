@@ -1,6 +1,7 @@
 # BabyMarket email templates
 
 This templates was build with [gulp](https://gulpjs.com/) and [nunjucks](https://mozilla.github.io/nunjucks/) templating engine to create new emails faster
+
 List of entry pages are located on this link [babymarket-email](https://mbibko.github.io/babymarket-email/)
 
 ## Getting Started
@@ -33,6 +34,3 @@ To create new template
 I will be happy to help if you have any questions:
 
 Maksym Bibko - [mbibko@gmail.com](mailto:mbibko@gmail.com)
-
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
