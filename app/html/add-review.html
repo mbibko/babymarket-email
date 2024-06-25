@@ -3,8 +3,8 @@
     <tbody>
         <tr>
             <td>
-                <p class="h1 text-center">Здравствуйте, Виктория!</p>
-                <p class="text-center ">Недавно вы совершили покупку в нашем магазине. Вы довольны товаром? Просим вас оставить отзыв о нем, это поможет другим покупателям определиться с выбором:</p>
+                <p class="h1 text-center">Hello, Victoria!</p>
+                <p class="text-center ">You have recently made a purchase in our store. Are you satisfied with the product? We ask you to leave a review about it, it will help other buyers to decide on the choice:</p>
                 <div class="product-sm-wrapper">
                     {% for i in range(0,4) %}
                     <table cellpadding="0" cellspacing="0" border="0">
@@ -16,27 +16,27 @@
                                             <tr>
                                                 <td width="100" class="product-sm-hor__col">
                                                     <div class="product-sm-hor__img">
-                                                        <img src="images/temp/product-sm/{{loop.index}}.jpg" alt="" />
+                                                        <img src="images/temp/product-img-lg.jpg" alt="" />
                                                     </div>
                                                 </td>
                                                 <td class="product-sm-hor__col">
                                                     <p style="margin-bottom: 10px;">
                                                         <a href="#" class="product-sm-hor__title">
                                                         {% if loop.first %}
-                                                            Набор контейнеров для хранения грудного молока Philips Avent Via SCF612/10
+                                                            Philips Avent Via SCF612/10 Breast Milk Storage Container Set
                                                         {% else %}
-                                                            Прогулочная коляска Vikalex Lazzara 
-                                                        {% endif %}
+                                                            Vikalex Lazzara stroller
+                                                            {% endif %}
                                                         </a>
                                                     </p>
-                                                    <p style="margin-bottom: 0;" class="">Артикул: <span class="color-dark">75920</span></p>
-                                                    <p style="margin-bottom: 0;" class="">Производитель: <span class="color-dark">Италия</span></p>
+                                                    <p style="margin-bottom: 0;" class="">Article no.: <span class="color-dark">75920</span></p>
+                                                    <p style="margin-bottom: 0;" class="">Manufacturer: <span class="color-dark">Italy</span></p>
                                                 </td>
                                                 <td width="160" class="product-sm-hor__col product-sm-hor__col--middle product-sm-hor__col--last">
                                                     {{ macro.btn({
                                                         class: 'btn-purple',
                                                         width: '160px',
-                                                        text: 'Добавить отзыв'
+                                                        text: 'Add a review'
                                                     }) }}
                                                 </td>
                                             </tr>
