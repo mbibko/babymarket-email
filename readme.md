@@ -34,6 +34,3 @@ To create new template
 I will be happy to help if you have any questions:
 
 Maksym Bibko - [mbibko@gmail.com](mailto:mbibko@gmail.com)
-
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
