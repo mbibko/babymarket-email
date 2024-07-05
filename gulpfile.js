@@ -86,7 +86,7 @@ gulp.task("sendmail", () => {
     .src(["build/payment-notification.html"]) // Modify this to select the HTML file(s)
     .pipe(
       sendmail({
-        key: "key-c9370f6109ccb5fa6223fd4f673e36c4", // Enter your Mailgun API key here
+        key: process.env.MAILGUN_API_KEY, // Enter your Mailgun API key here
         sender:
           "postmaster@sandboxa7c0607c0d9d40abb5c50ca20018e3b1.mailgun.org",
         recipient: "mbibko@gmail.com",
