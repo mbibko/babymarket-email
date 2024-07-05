@@ -4,3 +4,4 @@ sources/
 backup/
 build/
 Thumbs.db
+.env

@@ -5,6 +5,7 @@ const nunjucksRender = require("gulp-nunjucks-render");
 const gulpInlineCss = require("gulp-inline-css");
 const sendmail = require("gulp-mailgun");
 const through2 = require("through2");
+require('dotenv').config();
 
 const AttributeRemover = require("./modules/html-attributes-remover").default;
 const attributeRemover = new AttributeRemover({
